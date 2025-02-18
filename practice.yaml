@@ -12,6 +12,6 @@ spec:
     env:  
       - name: project
         valueFrom:
-          configMapKeyRe:
+          configMapKeyRef:
             name: expense
             key: project
