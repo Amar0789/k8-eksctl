@@ -1,29 +1,39 @@
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: set
   labels:
-    project: expense
+    project: epense
     environment: dev
-    module: something
 spec:
-  containers:
-  - name: nginx
-    image: nginx
+  replicas: 3
+  selector: 
+    matchlabels:
+      project: epense
+      environment: dev   
+  template:
+    metadata:
+      labels:
+        project: epense
+        environment: dev
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
 ---
 apiVersion: v1
 kind: Service
-metadata:
+metadata:   
   name: svc
-spec:
-  type: LoadBalancer
-  selector:
-    project: expense
+  labels:
+    project: epense
     environment: dev
-    module: something
-
+spec:
+  selector:
+    project: epense
+    environment: dev
   ports:
   - name: svc-port
     protocol: TCP
     port: 80
-    targetPort: 80   
+    targetPort: 80
