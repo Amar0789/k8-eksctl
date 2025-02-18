@@ -16,6 +16,7 @@ kind: Service
 metadata:
   name: svc
 spec:
+  type: NodePort
   selector:
     project: expense
     environment: dev
