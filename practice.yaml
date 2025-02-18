@@ -11,7 +11,7 @@ spec:
     image: nginx
     env:  
       - name: project
-      valueFrom:
-        configMapKeyRe:
-          name: expense
-          key: project
+        valueFrom:
+          configMapKeyRe:
+            name: expense
+            key: project
